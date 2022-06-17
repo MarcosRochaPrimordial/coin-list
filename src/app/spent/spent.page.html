@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Add Spent
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <div [formGroup]="form">
+    <div class="input-field amount">
+      <input
+        (blur)="setDecimals()"
+        mask="0*,00"
+        [dropSpecialCharacters]="false"
+        id="amount"
+        autocomplete="off"
+        formControlName="amount"
+        class="w60" />
+    </div>
+    <div class="input-field description">
+      <label for="description">Description</label>
+      <input id="description" autocomplete="off" formControlName="description" class="w80" />
+    </div>
+  </div>
+  <div class="button-wrapper">
+    <button class="w80" [disabled]="form.invalid" (click)="addSpent()">Add</button>
+  </div>
+</ion-content>

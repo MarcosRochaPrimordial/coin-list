@@ -1,11 +1,30 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { SpentListPage } from './spent-list/spent-list.page';
+import { SpentPage } from './spent/spent.page';
+import { TabsPage } from './tabs/tabs.page';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-  }
+    component: TabsPage,
+    children: [
+      {
+        path: 'spent',
+        component: SpentPage,
+      },
+      {
+        path: 'spent-list',
+        component: SpentListPage,
+      },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'spent',
+      }
+    ]
+  },
+
 ];
 @NgModule({
   imports: [
@@ -13,4 +32,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

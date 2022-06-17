@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Spent List
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ul>
+    <li class="spent-list" *ngFor="let spent of spents">
+      <div class="checkbox-container">
+        <input type="checkbox" [checked]="spent.marked">
+        <span class="checkmark" (click)="markSpent(spent.id)"></span>
+      </div>
+      <span [class.cutted]="spent.marked">{{ spent.description }}: € {{ spent.amount }}</span>
+      <ion-icon class="pointer" name="close-outline" (click)="removeSpent(spent.id)"></ion-icon>
+    </li>
+  </ul>
+</ion-content>
