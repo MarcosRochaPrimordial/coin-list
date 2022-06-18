@@ -10,10 +10,6 @@
         <span class="description-info">{{ spent.description }}</span>
         <span class="amount-info">€ {{ spent.amount }}</span>
       </div>
-      <button class="delete-button">
-        <ion-icon name="close-outline" class="pointer delete-icon"
-          (click)="removeSpent(spent.id); $event.stopPropagation()"></ion-icon>
-      </button>
     </li>
   </ul>
   <span class="warning-no-spent" *ngIf="spents.length < 1">

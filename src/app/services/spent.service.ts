@@ -27,12 +27,6 @@ export class SpentService {
         this.saveSpents(spents);
     }
 
-    public removeSpent(spentId: string) {
-        const spents = this.getSpents()
-            .filter(spent => spent.id !== spentId);
-        this.saveSpents(spents);
-    }
-
     public markSpent(spentId: string) {
         const spents = this.getSpents()
             .map(spent => {

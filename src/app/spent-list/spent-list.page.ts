@@ -21,10 +21,6 @@ export class SpentListPage implements OnInit {
       .subscribe(_ => this.spents = this.spentService.getSpents());
   }
 
-  removeSpent(spentId: string) {
-    this.spentService.removeSpent(spentId);
-  }
-
   markSpent(spentId: string) {
     this.spentService.markSpent(spentId);
   }
