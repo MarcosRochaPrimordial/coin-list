@@ -1,33 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { Spent } from '../models/spent.model';
+import { SpentFormService } from '../services/spent-form.service';
 import { SpentService } from '../services/spent.service';
 
 @Component({
-  selector: 'app-tab1',
+  selector: 'app-spent',
   templateUrl: 'spent.page.html',
   styleUrls: ['spent.page.scss']
 })
-export class SpentPage implements OnInit {
+export class SpentPage {
 
-  form: FormGroup;
+  get form(): FormGroup {
+    return this.spentFormService.form;
+  }
 
   constructor(
-    private formBuilder: FormBuilder,
+    private spentFormService: SpentFormService,
     private spentService: SpentService,
-    private router: Router,
     private toast: ToastController,
   ) { }
-
-  ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      amount: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      marked: [false],
-    });
-  }
 
   setDecimals() {
     let amount = this.form.get('amount');
@@ -40,17 +33,14 @@ export class SpentPage implements OnInit {
   }
 
   async addSpent() {
-    const spent: Spent = this.form.getRawValue();
+    const spent: Spent = this.spentFormService.form.getRawValue();
     this.spentService.addSpent(spent);
-    this.form.reset({
-      amount: '',
-      description: '',
-      marked: false,
-    });
+    this.spentFormService.resetForm();
     const toast = await this.toast.create({
       message: 'Spent added',
       duration: 2000,
-      position: 'top',
+      position: 'bottom',
+      cssClass: 'toast-wrap'
     });
     toast.present();
   }

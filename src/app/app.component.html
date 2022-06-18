@@ -1,3 +1,13 @@
 <ion-app>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="secondary" *ngIf="deleteButton">
+        <ion-button (click)="removeAllMarked()">
+          <ion-icon class="delete-all-items" name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>Coin List</ion-title>
+    </ion-toolbar>
+  </ion-header>
   <ion-router-outlet></ion-router-outlet>
 </ion-app>

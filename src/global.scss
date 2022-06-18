@@ -24,14 +24,22 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap');
 
 // global styles
-input, textarea {
-    outline: none;
+:root {
+    --ion-font-family: 'Ubuntu', sans-serif;
 }
 
-.w60 {
-    width: 60%;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input,
+textarea {
+    outline: none;
 }
 
 .w80 {
@@ -42,6 +50,7 @@ input, textarea {
     cursor: pointer;
 }
 
-ul {
-    list-style: none;
+.md .toast-wrap {
+    transform: translate(calc(50% + 70px), -140px);
+    width: 130px !important;
 }

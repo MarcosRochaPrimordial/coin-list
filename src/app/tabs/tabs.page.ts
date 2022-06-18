@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SpentFormService } from '../services/spent-form.service';
 
 @Component({
   selector: 'app-tabs',
@@ -7,6 +8,12 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
+  constructor(
+    private spentFormService: SpentFormService,
+  ) { }
+
+  clearForm() {
+    this.spentFormService.resetForm();
+  }
 
 }

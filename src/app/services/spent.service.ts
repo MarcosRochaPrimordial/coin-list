@@ -11,8 +11,6 @@ export class SpentService {
     private APP_STORAGE = 'STORAGE:APP:SPENT';
     public spents$ = new BehaviorSubject<boolean>(true);
 
-    constructor() { }
-
     private saveSpents(spents: Spent[]): void {
         localStorage.setItem(this.APP_STORAGE, JSON.stringify(spents));
         setTimeout(() => this.spents$.next(true));
@@ -25,7 +23,7 @@ export class SpentService {
     public addSpent(spent: Spent) {
         const spents = this.getSpents();
         spent.id = uuidv4();
-        spents.push(spent);
+        spents.splice(0, 0, spent);
         this.saveSpents(spents);
     }
 
@@ -43,6 +41,12 @@ export class SpentService {
                 }
                 return spent;
             });
+        this.saveSpents(spents);
+    }
+
+    public removeAllMarked() {
+        const spents = this.getSpents()
+            .filter(spent => !spent.marked);
         this.saveSpents(spents);
     }
 

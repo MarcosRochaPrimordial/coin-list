@@ -3,7 +3,7 @@ import { Spent } from '../models/spent.model';
 import { SpentService } from '../services/spent.service';
 
 @Component({
-  selector: 'app-tab2',
+  selector: 'app-spent-list',
   templateUrl: 'spent-list.page.html',
   styleUrls: ['spent-list.page.scss']
 })
@@ -13,7 +13,7 @@ export class SpentListPage implements OnInit {
 
   constructor(
     private spentService: SpentService,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.spentService
@@ -24,7 +24,7 @@ export class SpentListPage implements OnInit {
   removeSpent(spentId: string) {
     this.spentService.removeSpent(spentId);
   }
-  
+
   markSpent(spentId: string) {
     this.spentService.markSpent(spentId);
   }

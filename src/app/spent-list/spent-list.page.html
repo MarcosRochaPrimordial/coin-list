@@ -1,19 +1,22 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Spent List
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 <ion-content [fullscreen]="true">
-  <ul>
-    <li class="spent-list" *ngFor="let spent of spents">
+  <ul class="spent-list-wrap" *ngIf="spents.length > 0">
+    <li [ngClass]="{ 'spent-list': true, 'marked-spent': spent.marked }" *ngFor="let spent of spents"
+      (click)="markSpent(spent.id)">
       <div class="checkbox-container">
         <input type="checkbox" [checked]="spent.marked">
-        <span class="checkmark" (click)="markSpent(spent.id)"></span>
+        <span class="checkmark" (click)="markSpent(spent.id); $event.stopPropagation()"></span>
       </div>
-      <span [class.cutted]="spent.marked">{{ spent.description }}: € {{ spent.amount }}</span>
-      <ion-icon class="pointer" name="close-outline" (click)="removeSpent(spent.id)"></ion-icon>
+      <div [ngClass]="{ 'cutted': spent.marked, 'info-container': true }">
+        <span class="description-info">{{ spent.description }}</span>
+        <span class="amount-info">€ {{ spent.amount }}</span>
+      </div>
+      <button class="delete-button">
+        <ion-icon name="close-outline" class="pointer delete-icon"
+          (click)="removeSpent(spent.id); $event.stopPropagation()"></ion-icon>
+      </button>
     </li>
   </ul>
+  <span class="warning-no-spent" *ngIf="spents.length < 1">
+    There is no spents at the moment
+  </span>
 </ion-content>
