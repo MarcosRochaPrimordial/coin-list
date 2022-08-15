@@ -1,6 +1,6 @@
 .spent-list-wrap {
-    list-style: none;
     margin: 70px 3px 0 3px;
+    list-style: none;
     padding: 0;
 
     .spent-list {
@@ -11,7 +11,7 @@
         .checkbox-container {
             position: relative;
         }
-    
+
         .checkbox-container input {
             position: absolute;
             opacity: 0;
@@ -19,7 +19,7 @@
             height: 0;
             width: 0;
         }
-    
+
         .checkmark {
             position: absolute;
             top: 0;
@@ -29,25 +29,25 @@
             background-color: #eee;
             border-radius: 5px;
         }
-    
+
         .checkbox-container:hover input~.checkmark {
             background-color: #ccc;
         }
-    
+
         .checkbox-container input:checked~.checkmark {
             background-color: var(--ion-color-primary);
         }
-    
+
         .checkmark:after {
             content: "";
             position: absolute;
             display: none;
         }
-    
+
         .checkbox-container input:checked~.checkmark:after {
             display: block;
         }
-    
+
         .checkbox-container .checkmark:after {
             left: 9px;
             top: 5px;
@@ -84,6 +84,19 @@
         background-color: var(--ion-color-primary);
         color: #4a4a4a;
     }
+}
+
+.spent-list-value {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    font-size: 17pt;
+    width: 100%;
+    background-color: var(--ion-background-color);
+    padding: 20px 15px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #636363;
 }
 
 .warning-no-spent {

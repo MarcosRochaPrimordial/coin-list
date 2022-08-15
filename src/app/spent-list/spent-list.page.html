@@ -12,6 +12,14 @@
       </div>
     </li>
   </ul>
+  <div class="spent-list-value">
+    <span>
+      total:
+    </span>
+    <span>
+      € {{ totalValueSpent() }}
+    </span>
+  </div>
   <span class="warning-no-spent" *ngIf="spents.length < 1">
     There is no spents at the moment
   </span>

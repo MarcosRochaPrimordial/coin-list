@@ -25,4 +25,13 @@ export class SpentListPage implements OnInit {
     this.spentService.markSpent(spentId);
   }
 
+  totalValueSpent() {
+    return (this.spents
+      .filter(spent => spent.marked)
+      .reduce((acc, curr) => acc + +curr.amount.replace(',', '.'), 0))
+      .toFixed(2)
+      .toString()
+      .replace('.', ',');
+  }
+
 }
