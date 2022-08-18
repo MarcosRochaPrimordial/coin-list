@@ -27,7 +27,7 @@ export class SpentListPage implements OnInit {
 
   totalValueSpent() {
     return (this.spents
-      .filter(spent => spent.marked)
+      .filter(spent => !spent.marked)
       .reduce((acc, curr) => acc + +curr.amount.replace(',', '.'), 0))
       .toFixed(2)
       .toString()
